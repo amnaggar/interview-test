@@ -1,0 +1,67 @@
+Solution is Read for testing : 
+Countries and airports 1.0.1 Service are listening on 8000
+http://52.179.198.144:8000/airports/
+http://52.179.198.144:8000/countries/
+----------------------------------------------------------
+airports 1.1.0 Service are listening on 8001
+http://52.179.198.144:8001/airports/
+----------------------------------------------------------
+Steps to prepare the solution : 
+we will need install docker and NGINX  . 
+
+we will have Reverse proxy on top of (airports 1.0.1 and countries) in listen port 8000 and based on requests it will direct request to proper service 
+ 
+
+we will create all services on dcokers : 
+
+1- we will have docker for airports 1.0.1 .
+2- we will have docker for countries . 
+
+All dockers will be initiated with docker file specific to it with start-up.sh . 
+
+we will have also third docker for airports 1.1.0 with different listen port 8001 to avoid any conflict with production one and any impact . 
+
+Considering that we have code locally /interview-test 
+
+Also conisdering that we have Dockerfile for 3 builds (airports 1.0.1 - Countries - airports 1.1.0).
+
+Commands: 
+To build docker of service of countries :
+
+docker build -t countries:0.1 /path include (Docker file -start-up.sh - /interview-test)
+
+docker run -d -it  --name countries container_ID 
+
+To build docker of service of airports 1.0.1 :
+
+docker build -t airports:1.0 /path include (Docker file -start-up.sh - nterview-test)
+
+docker run -d -it  --name airports1.0 container_ID 
+
+To build docker of service of airports 1.1.0 :
+
+docker run -d -it  --name airports1.1 container_ID 
+
+ 
+To configure NGINX : 
+
+install NGINX locally 
+
+replace nginx.conf wuth attached one repository 
+
+Just replace IPs with new IPs of containers . 
+
+run command nginx -t 
+
+once is successfull you can restart NGINX 
+service nginx restart
+
+p.s we can use as an laternative solution to create docker network with specific range domain and assign IPs to each container while initializing .
+
+
+i couldn't prepare any automated job due to load on work and tight schedule during Ramdan :
+we can prpose taht we can do Jenkins pipeline with downloading package - initializing images - starting containers - configuring NGINX . 
+
+Also we can use aws ECR and ECS while upgrading production as it can not be upgraded if it fails in deployment ,
+
+also usning NGINX , we can redirect requests from production IP to new upgraded IP so it will be switched smoothly without any service impact or downtime 
