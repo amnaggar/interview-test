@@ -1,9 +1,9 @@
-Solution is Read for testing : 
+Solution is Ready for testing : 
 Countries and airports 1.0.1 Service are listening on 8000
 http://52.179.198.144:8000/airports/
 http://52.179.198.144:8000/countries/
 ----------------------------------------------------------
-airports 1.1.0 Service are listening on 8001
+new upgrade of airports 1.1.0 Service are listening on 8001
 http://52.179.198.144:8001/airports/
 ----------------------------------------------------------
 
