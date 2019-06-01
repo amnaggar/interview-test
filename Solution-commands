@@ -6,7 +6,12 @@ http://52.179.198.144:8000/countries/
 airports 1.1.0 Service are listening on 8001
 http://52.179.198.144:8001/airports/
 ----------------------------------------------------------
-Steps to prepare the solution : 
+
+you can use Postman for GET request or use linux command : 
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://52.179.198.144:8000/countries
+---------------------------------
+Steps to prepare the solution : -
+---------------------------------
 we will need install docker and NGINX  . 
 
 we will have Reverse proxy on top of (airports 1.0.1 and countries) in listen port 8000 and based on requests it will direct request to proper service 
